@@ -13,11 +13,11 @@ namespace Quiz_Maker.Repositories
 
     {
 
-        private string filePath = "questions.xml";
+        private const string FILE_PATH = "questions.xml";
         public void Save(List<Question> questions)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            using (FileStream stream = new FileStream(FILE_PATH, FileMode.Create))
             {
                 serializer.Serialize(stream, questions);
             }
@@ -26,9 +26,9 @@ namespace Quiz_Maker.Repositories
         public List<Question> Load()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            if (!File.Exists(filePath))
+            if (!File.Exists(FILE_PATH))
                 return new List<Question>();
-            using (FileStream stream = new FileStream(filePath, FileMode.Open))
+            using (FileStream stream = new FileStream(FILE_PATH, FileMode.Open))
             {
                 return (List<Question>)serializer.Deserialize(stream);
             }

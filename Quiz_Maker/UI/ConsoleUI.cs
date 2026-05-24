@@ -12,23 +12,32 @@ namespace Quiz_Maker.UI
     internal class ConsoleUI
     {
         private QuizService service = new QuizService();
+        private const string ADD_QUESTION = "1";
+        private const string TAKE_QUIZ = "2";
+        private const string EXIT = "3";
+
+        public string ShowMenu()
+        {
+            Console.WriteLine("1. Add Question");
+            Console.WriteLine("2. Take Quiz");
+            Console.WriteLine("3. Exit");
+            return Console.ReadLine();
+        }
+
         public void Start()
         {
             while (true)
             {
-                Console.WriteLine("1. Add Question");
-                Console.WriteLine("2. Take Quiz");
-                Console.WriteLine("3. Exit");
-                string choice = Console.ReadLine();
+                string choice = ShowMenu();
                 switch (choice)
                 {
-                    case "1":
+                    case ADD_QUESTION:
                         AddQuestion();
                         break;
-                    case "2":
+                    case TAKE_QUIZ:
                         TakeQuiz();
                         break;
-                    case "3":
+                    case EXIT:
                         return;
                     default:
                         Console.WriteLine("Invalid choice, try again.");
